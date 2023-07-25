@@ -3,7 +3,7 @@ import React, { memo, useState } from "react";
 import CoverTitle from "../../component/CoverTitle/CoverTitle";
 import MyCard from "../../component/MyCard/MyCard";
 import ArticleCard from "../../component/ArticleCard/ArticleCard";
-import { imgArrAdd } from "../../hooks/imgArrAdd";
+import { imgArrAdd } from "../../hooks/imgArrAdd"; // 导入背景图数组
 
 export default memo(function HomeView() {
   // 背景图数组（子组件封面图）
