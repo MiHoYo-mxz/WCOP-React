@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useState, memo, useEffect, Fragment } from "react";
+import { CSSTransition } from "react-transition-group";
+import NavBar from "./component/NavBar/NavBar";
+import HomeView from "./views/HomeView/HomeView";
+import { imgArrAdd } from "./hooks/imgArrAdd";
 
-function App() {
+export default memo(function App() {
+  const [theme, setTheme] = useState("");
+  // 改变全局主题
+  const changeTheme = (themeType: string) => {
+    setTheme(themeType);
+  };
+
+  // 背景图数组
+  const [imgArr] = useState(imgArrAdd);
+  let [imgNum, setNum] = useState(0);
+  useEffect(() => {
+    // 定时切换背景
+    setInterval(() => {
+      setNum((imgNum) => {
+        return imgArr.length - 1 === imgNum ? 0 : imgNum + 1;
+      });
+    }, 10000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" data-theme={theme}>
+      {/* 背景图遍历 */}
+      {imgArr.map((item, index) => (
+        <Fragment key={index}>
+          {/* 使用动画组件实现背景图渐变切换 */}
+          <CSSTransition
+            classNames="bgImg"
+            appear={true}
+            in={imgNum === index}
+            timeout={6000}
+            unmountOnExit={true}
+            key={index}>
+            <img className="bgImage" src={item} alt="" />
+          </CSSTransition>
+        </Fragment>
+      ))}
+      {/* 顶部导航栏组件 */}
+      <NavBar changeTheme={changeTheme}></NavBar>
+      {/* 滚动区域 */}
+      <div className="contentView w-screen h-screen absolute">
+        <HomeView></HomeView>
+      </div>
     </div>
   );
-}
-
-export default App;
+});
