@@ -1,4 +1,4 @@
-import "./App.scss";
+import { AppWrapper } from "./AppCss";
 import { useState, memo, useEffect, Fragment } from "react";
 import { CSSTransition } from "react-transition-group";
 import NavBar from "./component/NavBar/NavBar";
@@ -26,7 +26,7 @@ export default memo(function App() {
   }, []);
 
   return (
-    <div className="App" data-theme={theme}>
+    <AppWrapper className="App" data-theme={theme}>
       {/* 背景图遍历 */}
       {imgArr.map((item, index) => (
         <Fragment key={index}>
@@ -48,6 +48,6 @@ export default memo(function App() {
       <div className="contentView w-screen h-screen absolute">
         <HomeView></HomeView>
       </div>
-    </div>
+    </AppWrapper>
   );
 });

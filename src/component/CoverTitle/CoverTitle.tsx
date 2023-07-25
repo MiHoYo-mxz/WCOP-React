@@ -1,4 +1,4 @@
-import "./CoverTitle.scss";
+import { CoverTitleWrapper } from "./CoverTitleCss";
 import { useEffect, memo } from "react";
 import { textAnimate } from "../../hooks/textAnimate";
 
@@ -9,7 +9,7 @@ export default memo(function CoverTitle() {
   }, []);
   return (
     // 封面title区域
-    <div className="coverTitle w-full h-1/5 coverTitle absolute top-1/2 text-center flex flex-col justify-between z-40 opacity-80">
+    <CoverTitleWrapper className="coverTitle w-full h-1/5 coverTitle absolute top-1/2 text-center flex flex-col justify-between z-40 opacity-80">
       <div>
         <span className="font-extrabold text-9xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
           Hello World
@@ -20,6 +20,6 @@ export default memo(function CoverTitle() {
           id="subTitle"
           className="font-extrabold text-3xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"></span>
       </div>
-    </div>
+    </CoverTitleWrapper>
   );
 });

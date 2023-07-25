@@ -1,4 +1,4 @@
-import { Homewrapper } from "./Home"; // 导入该组件样式
+import { Homewrapper } from "./HomeViewCss"; // 导入该组件样式
 import React, { memo, useState } from "react";
 import CoverTitle from "../../component/CoverTitle/CoverTitle";
 import MyCard from "../../component/MyCard/MyCard";
