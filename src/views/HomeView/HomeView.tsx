@@ -1,4 +1,4 @@
-import "./HomeView.scss";
+import { Homewrapper } from "./Home"; // 导入该组件样式
 import React, { memo, useState } from "react";
 import CoverTitle from "../../component/CoverTitle/CoverTitle";
 import MyCard from "../../component/MyCard/MyCard";
@@ -10,7 +10,7 @@ export default memo(function HomeView() {
   const [imgArr] = useState(imgArrAdd);
   return (
     // 博客核心滚动区域
-    <div className="home absolute top-0 z-40">
+    <Homewrapper className="home absolute top-0 z-40">
       {/* 博客封面 */}
       <div className="coverArea relative h-screen">
         {/* 封面内容 */}
@@ -29,6 +29,6 @@ export default memo(function HomeView() {
           ))}
         </div>
       </div>
-    </div>
+    </Homewrapper>
   );
 });
