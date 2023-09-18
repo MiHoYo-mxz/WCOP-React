@@ -4,7 +4,7 @@ import myCover from "../../assets/img/EqEgKAXC_400x400.png";
 // 个人卡片
 export default memo(function MyCard() {
   return (
-    <div className="card w-1/4 h-96 glass">
+    <div className="card h-1/3 glass">
       <figure>
         <img className="cardCover" src={myCover} alt="car!" />
       </figure>

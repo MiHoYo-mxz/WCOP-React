@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 // 定义主题色接口
 interface propsType {
@@ -13,78 +14,32 @@ export default memo(function NavBar({ changeTheme }: propsType) {
   const changeThemeType = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
-    themeType = (e.target as HTMLInputElement).checked ? "dark" : "";
+    themeType = (e.target as HTMLInputElement).checked ? "black" : "";
     changeTheme(themeType);
   };
+
+  let navigate = useNavigate();
+  // 跳转到首页
+  const toHome = () => {
+    console.log("跳转首页");
+    navigate("/");
+  };
+
+  // 跳转到关于页
+  const toAboutMe = () => {
+    console.log("跳转关于页");
+    navigate("/about");
+  };
+
   return (
     // 顶部导航栏组件
     <div className="navbar bg-base-100 rounded-b-lg w-8/12 absolute top-0 translate-x-1/4 z-50">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <a className="text-xl">首页</a>
-            </li>
-            <li>
-              <a>文章</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>归档</a>
-            </li>
-            <li>
-              <a>关于</a>
-            </li>
-          </ul>
-        </div>
+      <div className="navbar-start" onClick={toHome}>
         {/* logo名称 */}
         <a className="btn btn-ghost normal-case text-xl">WCOP</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className="flex">
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                />
-              </svg>
-              首页
-            </a>
-          </li>
-
           <li tabIndex={0}>
             <details>
               <summary>
@@ -131,7 +86,7 @@ export default memo(function NavBar({ changeTheme }: propsType) {
               归档
             </a>
           </li>
-          <li>
+          <li onClick={toAboutMe}>
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

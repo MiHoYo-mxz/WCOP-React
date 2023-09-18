@@ -1,9 +1,9 @@
-import { AppWrapper } from "./AppCss";
+import { AppWrapper } from "./AppCss"; // 该组件样式
 import { useState, memo, useEffect, Fragment } from "react";
-import { CSSTransition } from "react-transition-group";
+import RouterIndex from "./router/RouterIndex";
+import { CSSTransition } from "react-transition-group"; // 动画组件
 import NavBar from "./component/NavBar/NavBar";
-import HomeView from "./views/HomeView/HomeView";
-import { imgArrAdd } from "./hooks/imgArrAdd";
+import { imgArrAdd } from "./hooks/imgArrAdd"; // 背景图数组
 
 export default memo(function App() {
   const [theme, setTheme] = useState("");
@@ -46,7 +46,7 @@ export default memo(function App() {
       <NavBar changeTheme={changeTheme}></NavBar>
       {/* 滚动区域 */}
       <div className="contentView w-screen h-screen absolute">
-        <HomeView></HomeView>
+        <RouterIndex></RouterIndex>
       </div>
     </AppWrapper>
   );
