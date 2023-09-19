@@ -1,0 +1,32 @@
+name: Update Fork
+
+on:
+  schedule:
+    - cron: '0/10 * * * *'  # 每天午夜执行一次
+  workflow_dispatch:  # 启用手动触发
+    inputs:  # 可选：定义输入参数，如果需要的话
+      branch:
+        description: '要更新的分支'
+        required: true
+        default: 'main' 
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/nikaidoo-shinku/WCOP-React
+
+      - name: Fetch upstream changes
+        run: git fetch upstream
+
+      - name: Merge upstream changes
+        run: git merge upstream/main
